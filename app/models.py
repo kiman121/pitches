@@ -17,6 +17,7 @@ class User(db.Model):
     profile_pic_path = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     posts = db.relationship('Post', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
     @property
     def password(self):
@@ -53,11 +54,10 @@ class Category(db.Model):
     category_name = db.Column(db.String(255))
     posts = db.relationship('Post', backref='category', lazy='dynamic')
 
-    def __init__(self, id, category_name):
+    def __init__(self, category_name):
         '''
         Method that defines Category object properties.
         Args: 
-            id: New category id
             category_name: New category name
         '''
         self.id = id
@@ -89,3 +89,49 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories'))
+    comments = db.relationship('Comment', backref='comment', lazy='dynamic')
+
+
+class Comment(db.Model):
+    '''
+    Clas that creates comment objects
+    '''
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comment = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __init__(self, post_id, user_id, comment, created_at):
+        '''
+        Method that defines Comment object properties.
+        Args: 
+            post_id: New comment post id
+            user_id: New comment user id
+            comment: New comment comment
+            created_at: New comment date time
+        '''
+        self.post_id = post_id
+        self.user_id = user_id
+        self.comment = comment
+        self.created_at =created_at
+    
+    def save_comment(self):
+        '''
+        Method that saves the instance of the comment model
+        '''
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_comments(cls, id):
+        '''
+        Method that retrieves post comments based on the post id
+        Args:
+            id: post id
+        '''
+        comments = Comment.query.filter_by(post_id=id).all()
+        return comments
+    
