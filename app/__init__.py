@@ -1,15 +1,15 @@
 from flask import Flask
-from flask_boostrap import Bootstrap
+from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 
 # Instatiating
-boostrap = Bootstrap()
+bootstrap = Bootstrap()
 db = SQLAlchemy()
 
 def create_app(config_name):
     '''
-    Function that creates a instance of the app
+    Function that creates a instance of the app on run
     Args:
         config_name: configuration setting (development,production or test)
     '''
@@ -23,4 +23,3 @@ def create_app(config_name):
     db.init_app(app)
 
     return app
-    

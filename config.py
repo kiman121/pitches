@@ -4,7 +4,7 @@ class Config:
     '''
     General configuaration parent class
     '''
-    SECRET_KEY = os.environ.get(SECRET_KEY)
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
