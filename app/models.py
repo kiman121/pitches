@@ -101,7 +101,7 @@ class Post(db.Model):
     post = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    category_id = db.Column(db.Integer, db.ForeignKey('categories'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
 
