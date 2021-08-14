@@ -17,20 +17,20 @@ class User(db.Model):
     profile_pic_path = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     posts = db.relationship('Post', backref='user', lazy='dynamic')
-    comments = db.relationship('Comment', backref='comment', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
-    def __init__(self, first_name, other_names,username,email):
-        '''
-        Method that defines User object properties.
-        Args: 
-            first_name: New user first name
-            other_names: New user other names
-            username: New user username
-        '''
-        self.first_name = first_name
-        self.other_names = other_names
-        self.username = username
-        self.email = email
+    # def __init__(self, first_name, other_names,username,email):
+    #     '''
+    #     Method that defines User object properties.
+    #     Args: 
+    #         first_name: New user first name
+    #         other_names: New user other names
+    #         username: New user username
+    #     '''
+    #     self.first_name = first_name
+    #     self.other_names = other_names
+    #     self.username = username
+    #     self.email = email
 
     @property
     def password(self):
@@ -114,21 +114,21 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comment = db.Column(db.String(255))
+    comments = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, post_id, user_id, comment, created_at):
+    def __init__(self, post_id, user_id, comments, created_at):
         '''
         Method that defines Comment object properties.
         Args: 
             post_id: New comment post id
             user_id: New comment user id
-            comment: New comment comment
+            comments: New comment comments
             created_at: New comment date time
         '''
         self.post_id = post_id
         self.user_id = user_id
-        self.comment = comment
+        self.comments = comments
         self.created_at =created_at
     
     def save_comment(self):

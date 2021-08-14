@@ -11,11 +11,11 @@ class CommentModelTest(unittest.TestCase):
         '''
         Set up method that will run before every test
         '''
-        self.user_John = User('John', 'Pemba Mwadime',
-                              'pmwadime', 'pemba@ms.com')
+        self.user_John = User(first_name='John', other_names='Pemba Mwadime',
+                              username='pmwadime', email='pemba@ms.com')
         self.new_comment = Comment(
             1, self.user_John.id, 'What an amaizing picth!', '10/03/2017 07:29:46 -0700')
-
+    
     def tearDown(self):
         '''
         Method that cleans up afetr every test case run
@@ -35,7 +35,7 @@ class CommentModelTest(unittest.TestCase):
         '''
         self.assertEquals(self.new_comment.post_id, 1)
         self.assertEquals(self.new_comment.user_id, self.user_John.id)
-        self.assertEquals(self.new_comment.comment, 'What an amaizing picth!')
+        self.assertEquals(self.new_comment.comments, 'What an amaizing picth!')
         self.assertEquals(self.created_at, '10/03/2017 07:29:46 -0700')
 
     def test_save_comment(self):
