@@ -2,6 +2,7 @@
 [TOC]
 1. General
 
+
 ========================================*/
 
 /*-----------------
@@ -18,8 +19,10 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 18px;
 }
+
+
 /*-----------------
- Error page 
+ Error page
  -----------------------*/
 .error-page {
     align-items: center;
