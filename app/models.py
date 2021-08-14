@@ -19,6 +19,19 @@ class User(db.Model):
     posts = db.relationship('Post', backref='user', lazy='dynamic')
     comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
+    def __init__(self, first_name, other_names,username,email):
+        '''
+        Method that defines User object properties.
+        Args: 
+            first_name: New user first name
+            other_names: New user other names
+            username: New user username
+        '''
+        self.first_name = first_name
+        self.other_names = other_names
+        self.username = username
+        self.email = email
+
     @property
     def password(self):
         '''
