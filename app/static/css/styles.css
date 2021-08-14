@@ -1,0 +1,74 @@
+/*============================
+[TOC]
+1. General
+
+========================================*/
+
+/*-----------------
+	1. General
+-----------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+/*-----------------
+ Error page 
+ -----------------------*/
+.error-page {
+    align-items: center;
+    color: #1f1f1f;
+    display: flex;
+    margin: 0;
+  }
+  .error-page .error-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .error-content {
+    margin: 0 auto;
+    max-width: 480px;
+    padding: 40px 0;
+    text-align: center;
+    width: 100%;
+  }
+  .error-content h1 {
+    color: #667eea;
+    font-size: 10em;
+  }
+  .error-content p {
+    margin-bottom: 30px;
+  }
+  .error-content .btn {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 200px;
+    padding: 10px 20px;
+  }
+  .btn-custom {
+    background: #667eea;
+    background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+    color: #fff;
+  }
+  .btn-custom.focus,
+  .btn-custom:focus,
+  .btn-custom:hover {
+    background: #667eea;
+    background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+    color: #fff;
+  }
