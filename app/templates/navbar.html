@@ -1,18 +1,40 @@
-<header>
+<div class="header">
+  <div class="header-left">
     <div class="logo">
-        <a href="/">
-            <h1>Insta News</h1>
-        </a>
+      <a href="/">
+        <h1>Insta News</h1>
+      </a>
     </div>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-        </ul>
-    </nav>
-    <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-    </label>
-</header>
+  </div>
+  <ul class="user-menu">
+    <li>
+      <div class="top-nav-search">
+        <!-- <a href="">
+          <i class="fa fa-search"></i>
+        </a> -->
+        <form action="">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search here..."
+          />
+          <div class="input-group-append">
+            <button class="btn"><i class="fa fa-search"></i></button>
+          </div>
+        </form>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="">
+        <img
+          src="../static/photos/Screenshot_2021-08-10_at_10.17.16.png"
+          alt=""
+        />
+      </a>
+      <div class="dropdown-menu">
+        <a href="">Profile</a>
+        <a href="">Logout</a>
+      </div>
+    </li>
+  </ul>
+</div>

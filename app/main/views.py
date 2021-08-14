@@ -7,5 +7,5 @@ def index():
     '''
     View function that returns the index page
     '''
-    title = "Pitches|home"
+    title = "Pitches - home"
     return render_template('index.html', title=title)
