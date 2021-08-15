@@ -25,8 +25,7 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     '''
-    Method that creates a form instance (register) and passes it into the template.
-    If the form is submitted, the user is saved into the db.
+    Function that handles a register request
     '''
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -36,6 +35,15 @@ def register():
         db.session.commit()
 
         return redirect(url_for('auth.login'))
-        title = "New Account"
+        title = "Pitches - new account"
         
     return render_template('auth/register.html', registration_form=form)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    '''
+    Function that logs out the user from the application
+    '''
+    logout_user()
+    return redirect(url_for("main.index"))
