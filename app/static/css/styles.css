@@ -20,121 +20,125 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 18px;
 }
+.page-wrapper {
+  padding-top: 5em;
+}
 
 /*-----------------
     2. Header
  -----------------------*/
 .header {
-    background-color: rgba(52, 58, 64, 0.95);
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-    height: 60px;
+  background-color: rgba(52, 58, 64, 0.95);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  height: 60px;
 }
-.header .header-left{
-    float: left;
-    height: 60px;
-    padding: 0 20px;
-    position: relative;
+.header .header-left {
+  float: left;
+  height: 60px;
+  padding: 0 20px;
+  position: relative;
 }
-.header ul{
-    list-style: none;
-    float: right;
+.header ul {
+  list-style: none;
+  float: right;
 }
-.header ul li{
-    display: inline-block;
+.header ul li {
+  display: inline-block;
 }
 .header .dropdown-menu > li > a {
-	position: relative;
+  position: relative;
 }
-.user-menu{
-    float: right;
-    margin: 0;
-    position: relative;
-    z-index: 99;
+.user-menu {
+  float: right;
+  margin: 0;
+  position: relative;
+  z-index: 99;
 }
-.user-menu img{
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
+.user-menu img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 .top-nav-search .form-control {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    color: #fff;
-    height: 40px;
-    padding: 10px 50px 10px 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  color: #fff;
+  height: 40px;
+  padding: 10px 50px 10px 15px;
 }
 .top-nav-search .btn {
-    background-color: transparent;
-    border-color: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    min-height: 40px;
-    padding: 7px 15px;
-    position: absolute;
-    right: 0;
-    top: 0;
+  background-color: transparent;
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 40px;
+  padding: 7px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .top-nav-search form {
-    margin-top: 10px;
-    position: relative;
-    width: 230px;
+  margin-top: 10px;
+  position: relative;
+  width: 230px;
 }
-.dropdown{
-    position: relative;
+.dropdown {
+  position: relative;
 }
+
 /*-----------------
  Error page
  -----------------------*/
 .error-page {
-    align-items: center;
-    color: #1f1f1f;
-    display: flex;
-    margin: 0;
-  }
-  .error-page .error-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-  .error-content {
-    margin: 0 auto;
-    max-width: 480px;
-    padding: 40px 0;
-    text-align: center;
-    width: 100%;
-  }
-  .error-content h1 {
-    color: #667eea;
-    font-size: 10em;
-  }
-  .error-content p {
-    margin-bottom: 30px;
-  }
-  .error-content .btn {
-    border-radius: 50px;
-    font-size: 18px;
-    font-weight: 600;
-    min-width: 200px;
-    padding: 10px 20px;
-  }
-  .btn-custom {
-    background: #667eea;
-    background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
-    color: #fff;
-  }
-  .btn-custom.focus,
-  .btn-custom:focus,
-  .btn-custom:hover {
-    background: #667eea;
-    background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
-    background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
-    color: #fff;
-  }
+  align-items: center;
+  color: #1f1f1f;
+  display: flex;
+  margin: 0;
+}
+.error-page .error-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.error-content {
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 40px 0;
+  text-align: center;
+  width: 100%;
+}
+.error-content h1 {
+  color: #667eea;
+  font-size: 10em;
+}
+.error-content p {
+  margin-bottom: 30px;
+}
+.error-content .btn {
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  min-width: 200px;
+  padding: 10px 20px;
+}
+.btn-custom {
+  background: #667eea;
+  background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+.btn-custom.focus,
+.btn-custom:focus,
+.btn-custom:hover {
+  background: #667eea;
+  background: -moz-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: -webkit-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: -ms-linear-gradient(left, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
