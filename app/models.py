@@ -106,12 +106,32 @@ class Post(db.Model):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
-    post = db.Column(db.String(255))
+    post = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
+    def __init__(self,post,user_id,category_id):
+        '''
+        '''
+        self.post = post
+        self.user_id = user_id
+        self.category_id = category_id
+    
+    def save_post(self):
+        '''
+        Method that saves the instance of post model
+        '''
+        db.session.add(self)
+        db.session.commit()
+    
+    # def get_posts(id):
+    #     '''
+    #     Method that retrives posts
+    #     Args: 
+    #         id: post id
+    #     '''
 
 class Comment(db.Model):
     '''

@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
-
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
     <div class="page-wrapper">
         <p>This is the index page!!!!!!!!!</p>
+        <form action="/post/new" method="POST">
+            {{ post_form.hidden_tag() }}
+                {{post_form.category}}
+                {{post_form.post}}
+                {{post_form.submit}}
+        </form>
+        <!-- {{wtf.quick_form(post_form)}} -->
     </div>
 {% endblock %}
