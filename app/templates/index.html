@@ -1,15 +1,80 @@
-{% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf %}
-
-{% block content %}
-    <div class="page-wrapper">
-        <p>This is the index page!!!!!!!!!</p>
-        <form action="/post/new" method="POST">
-            {{ post_form.hidden_tag() }}
-                {{post_form.category}}
-                {{post_form.post}}
-                {{post_form.submit}}
-        </form>
-        <!-- {{wtf.quick_form(post_form)}} -->
-    </div>
+{% extends 'base.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+content %}
+<div class="page-wrapper">
+  <div class="content-wrapper">
+    <p>This is the index page!!!!!!!!!</p>
+    {% if user == current_user.user and current_user.is_authenticated %}
+    <form action="/post/new" method="POST">
+      {{ post_form.hidden_tag() }} {{post_form.category}} {{post_form.post}}
+      {{post_form.submit}}
+    </form>
+    {% endif%} {% for post in posts %}
+        <div class="post-wrapper">
+            <div class="row post-header">
+                <div class="col-md-2 post-user-img">
+                <img
+                    src="{{url_for('static', filename=post.profile_pic_path)}}"
+                    alt="user profile pic"
+                />
+                </div>
+                <div class="col-md-10 post-content">
+                <h4>{{post.category}}</h4>
+                <p>
+                    <span class="post-user-name">{{post.posted_by}}</span> |
+                    <span>{{post.post_date}}</span>
+                </p>
+                </div>
+            </div>
+            <div class="post-body">
+                <p>{{post.post_detail}}</p>
+            </div>
+            <div class="post-statistics">
+                <div class="row">
+                <div class="col-md-6 up-down-vote">
+                    <ul>
+                    <li>
+                        <a class="upvote" href=""><i class="fa fa-thumbs-up"></i></a>
+                    </li>
+                    <li>
+                        <a class="downvote" href=""
+                        ><i class="fa fa-thumbs-down"></i
+                        ></a>
+                    </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 comments-tally"><p>30 comments</p></div>
+                </div>
+            </div>
+            <div class="post-comments">
+                {% if user == current_user.user and current_user.is_authenticated %}
+                    <div class="row add-comment">
+                        <div class="col-md-2">
+                            <img
+                            src="{{url_for('static', filename=current_user.profile_pic_path)}}"
+                            alt=""
+                            />
+                        </div>
+                        <div class="col-md-10">
+                            <form action="{{url_for('main.add_comment', uid=current_user.id, pid=post.post_id)}}" method="POST">
+                                {{comment_form.hidden_tag() }}
+                                <div class="row">
+                                    <div class="col-md-10">{{comment_form.comment}}</div>
+                                    <div class="col-md-2">{{comment_form.submit}}</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="">
+                        {% for comment in comments %}
+                            {% if comment.post_id == post.post_id %}
+                                {{comment.commented_by}}
+                            {% endif%}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

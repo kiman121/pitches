@@ -112,27 +112,40 @@ class Post(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     comments = db.relationship('Comment', backref='comment', lazy='dynamic')
 
-    def __init__(self,post,user_id,category_id):
+    def __init__(self, post,user_id,category_id):
         '''
         '''
         self.post = post
         self.user_id = user_id
         self.category_id = category_id
     
-    def save_post(self):
-        '''
-        Method that saves the instance of post model
-        '''
-        db.session.add(self)
-        db.session.commit()
+    # def save_post(self):
+    #     '''
+    #     Method that saves the instance of post model
+    #     '''
+    #     db.session.add(self)
+    #     db.session.commit()
     
-    # def get_posts(id):
+    # def get_posts():
     #     '''
     #     Method that retrives posts
     #     Args: 
-    #         id: post id
+    #         # id: post id
     #     '''
+    #     return Post.query.all()
 
+class PostDetails:
+    '''
+    Post details class to define post details objects
+    '''
+    def __init__(self, post_id,post_date ,post_detail,category,posted_by,profile_pic_path):
+        self.post_id = post_id
+        self.post_date = post_date
+        self.post_detail = post_detail
+        self.category=category
+        self.posted_by = posted_by
+        self.profile_pic_path = profile_pic_path
+        # self.post_comments = post_comments
 class Comment(db.Model):
     '''
     Clas that creates comment objects
@@ -145,7 +158,7 @@ class Comment(db.Model):
     comments = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, post_id, user_id, comments, created_at):
+    def __init__(self, post_id, user_id, comments):
         '''
         Method that defines Comment object properties.
         Args: 
@@ -157,7 +170,7 @@ class Comment(db.Model):
         self.post_id = post_id
         self.user_id = user_id
         self.comments = comments
-        self.created_at =created_at
+        # self.created_at =created_at
     
     def save_comment(self):
         '''
@@ -176,3 +189,9 @@ class Comment(db.Model):
         comments = Comment.query.filter_by(post_id=id).all()
         return comments
     
+class CommentDetails:
+    def __init__(self,post_id, comment_date,commented_by,profile_pic_path):
+        self.post_id = post_id
+        self.comment_date =comment_date
+        self.commented_by = commented_by
+        self.profile_pic_path = profile_pic_path
