@@ -5,6 +5,7 @@ from .forms import PostForm, AddComment
 from ..models import Post, Category, Comment
 from ..request import get_posts, get_comments
 from ..import db
+from sqlalchemy import func
 
 
 @main.route('/')
@@ -15,6 +16,7 @@ def index():
     posts = get_posts()
     comments = get_comments()
     title = "Pitches - home"
+    # print(comments)
 
     post_form = PostForm()
     comment_form = AddComment()
@@ -51,5 +53,28 @@ def add_comment(pid, uid):
                               comments=form.comment.data)
         db.session.add(new_comment)
         db.session.commit()
+
+    return redirect(url_for('.index'))
+
+@main.route('/post/vote/<int:pid>/<votetype>')
+def add_comment_vote(pid,votetype):
+
+    post = Post.query.filter_by(id=pid).first()
+
+    # initial_tally = None
+
+    if votetype == 'upvote':
+
+        if post.upvote == None:
+            post.upvote = 1
+        else:
+            post.upvote += 1
+    elif votetype == 'downvote':
+        if post.downvote == None:
+            post.downvote = 1
+        else:
+            post.downvote += 1
+    
+    db.session.commit()
 
     return redirect(url_for('.index'))

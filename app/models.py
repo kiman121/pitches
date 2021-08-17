@@ -110,7 +110,10 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    upvote = db.Column(db.Integer)
+    downvote = db.Column(db.Integer)
     comments = db.relationship('Comment', backref='comment', lazy='dynamic')
+    
 
     def __init__(self, post,user_id,category_id):
         '''
@@ -138,14 +141,16 @@ class PostDetails:
     '''
     Post details class to define post details objects
     '''
-    def __init__(self, post_id,post_date ,post_detail,category,posted_by,profile_pic_path):
+    def __init__(self, post_id,post_date ,post_detail,category,posted_by,profile_pic_path,num_posts,upvote, downvote):
         self.post_id = post_id
         self.post_date = post_date
         self.post_detail = post_detail
         self.category=category
         self.posted_by = posted_by
         self.profile_pic_path = profile_pic_path
-        # self.post_comments = post_comments
+        self.num_posts = num_posts
+        self.upvote = upvote
+        self.downvote = downvote
 class Comment(db.Model):
     '''
     Clas that creates comment objects
@@ -190,8 +195,9 @@ class Comment(db.Model):
         return comments
     
 class CommentDetails:
-    def __init__(self,post_id, comment_date,commented_by,profile_pic_path):
+    def __init__(self,post_id, comments_made, comment_date,commented_by,profile_pic_path):
         self.post_id = post_id
+        self.comments_made = comments_made
         self.comment_date =comment_date
         self.commented_by = commented_by
         self.profile_pic_path = profile_pic_path

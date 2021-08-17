@@ -18,6 +18,10 @@ body {
   padding: 0;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
+  /* color: #fff; */
+  color: #fff;
+  background: #18191A;
+  /* background: #E8F0F2; */
 }
 .page-wrapper {
   padding-top: 5em;
@@ -94,12 +98,14 @@ body {
   max-width: 60%;
 }
 .post-wrapper {
-  border: 2px solid red;
-  border-radius: 4px;
-  padding: 0.45em 0.25em;
+  background-color: rgba(255, 255, 255, 0.1);
+  /* background: rgba(0, 0, 0, 0.2); */
+  border: none;
+  border-radius: 6px;
+  padding: 2.45em 2.25em;
+  margin: 2em 0;
 }
 .post-header {
-  /* border: 1px solid; */
   margin: 0.1em;
 }
 .post-user-img {
@@ -148,10 +154,43 @@ body {
 .downvote {
   background: red;
 }
-.add-comment img {
+.post-comments-wrapper{
+  margin: 0.45em 2em;
+}
+.post-comments-wrapper img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.add-comment, .post-comments{
+  margin: 0.25em 0;
+  padding: 0.35em 0;
+}
+.add-comment-form .form-control {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  color: #fff;
+  height: 40px;
+  padding: 10px 50px 10px 15px;
+}
+.add-comment-form .btn {
+  background-color: transparent;
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 40px;
+  padding: 7px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.add-comment-form form {
+  position: relative;
+}
+.comment-body {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.75em;
 }
 /*-----------------
  Error page
