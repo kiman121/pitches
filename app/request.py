@@ -24,7 +24,7 @@ def get_posts():
         upvote = post.upvote
         downvote = post.downvote
         
-        post_comments_count = []
+        # post_comments_count = []
 
         count = 0;
         if comments:

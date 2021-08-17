@@ -11,28 +11,7 @@
 
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add_post_modal">Add post</button>
 
 
 
@@ -40,7 +19,7 @@
 
 
 
-  <ul class="user-menu">
+  <ul class="nav user-menu">
     <li>
       <div class="top-nav-search">
         <form action="">
@@ -55,13 +34,33 @@
         </form>
       </div>
     </li>
-    <li class="dropdown">
+    
+    <li class="nav-item dropdown has-arrow main-drop">
       {% if current_user.is_authenticated %}
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <span class="user-img"><img src="{{url_for('static', filename=current_user.profile_pic_path)}}" alt="">
+          <span>{{current_user.first_name}}</span>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="profile.html">My Profile</a>
+          <a class="dropdown-item" href="login.html">Logout</a>
+        </div>
+      {% else %}
+        <a href="{{url_for('auth.login')}}">Sign in</a>
+      {% endif %}
+    </li>
+    <!-- <li class="dropdown">
+      {% if current_user.is_authenticated %}      
         <a href="">
-          <img
-            src="../static/photos/default_user_pic.png"
-            alt=""
-          />
+          <span>
+            <img
+              src="{{url_for('static', filename=current_user.profile_pic_path)}}"
+              alt=""
+            />
+          </span>
+          <span>
+            {{current_user.first_name}}
+          </span>
         </a>
         <div class="dropdown-menu">
           <a href="">Profile</a>
@@ -70,6 +69,6 @@
       {% else %}
       <a href="{{url_for('auth.login')}}">Sign in</a>
       {% endif %}
-    </li>
+    </li> -->
   </ul>
 </div>

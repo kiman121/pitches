@@ -16,7 +16,6 @@ def index():
     posts = get_posts()
     comments = get_comments()
     title = "Pitches - home"
-    # print(comments)
 
     post_form = PostForm()
     comment_form = AddComment()
@@ -35,8 +34,10 @@ def new_post():
     if form.validate_on_submit():
         new_post = Post(post=form.post.data, user_id=current_user.get_id(
         ), category_id=form.category.data.id)
+        
         db.session.add(new_post)
         db.session.commit()
+        
     return redirect(url_for('.index'))
 
 

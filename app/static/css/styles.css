@@ -18,9 +18,9 @@ body {
   padding: 0;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
-  /* color: #fff; */
   color: #fff;
-  background: #18191A;
+  background-color: #f7f7f7;
+  /* background: #18191A; */
   /* background: #E8F0F2; */
 }
 .page-wrapper {
@@ -53,6 +53,9 @@ body {
 .header .dropdown-menu > li > a {
   position: relative;
 }
+.header .dropdown-menu .dropdown-item {
+  padding: 5px 15px;
+}
 .user-menu {
   float: right;
   margin: 0;
@@ -63,6 +66,17 @@ body {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+}
+.user-menu.nav > li > a {
+	color: #fff;
+	font-size: 15px;
+	line-height: 60px;
+	padding: 0 15px;
+	height: 60px;
+}
+.user-menu.nav > li > a:hover,
+.user-menu.nav > li > a:focus {
+	background-color: rgba(0, 0, 0, 0.2);
 }
 .top-nav-search .form-control {
   background-color: rgba(255, 255, 255, 0.1);
@@ -90,6 +104,36 @@ body {
 .dropdown {
   position: relative;
 }
+.header .has-arrow .dropdown-toggle:after {
+	border-top: 0;
+	border-left: 0;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	content: '';
+	height: 8px;
+	display: inline-block;
+	pointer-events: none;
+	-webkit-transform-origin: 66% 66%;
+	-ms-transform-origin: 66% 66%;
+	transform-origin: 66% 66%;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+	width: 8px;
+	vertical-align: 2px;
+}
+.header .has-arrow .dropdown-toggle[aria-expanded="true"]:after {
+	-webkit-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+.main-drop .user-img img {
+	border-radius: 50%;
+    width: 30px;
+}
+
 /*-----------------
     3. Posts
  -----------------------*/
@@ -98,8 +142,9 @@ body {
   max-width: 60%;
 }
 .post-wrapper {
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
   /* background: rgba(0, 0, 0, 0.2); */
+  background-color: #18191A;
   border: none;
   border-radius: 6px;
   padding: 2.45em 2.25em;
@@ -191,6 +236,9 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 0.75em;
+}
+#add_post_modal{
+  color: #000;
 }
 /*-----------------
  Error page

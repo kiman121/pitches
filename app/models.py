@@ -64,7 +64,12 @@ class User(UserMixin, db.Model):
         '''
         return check_password_hash(self.password_hash, password)
 
-
+    def save_user(self):
+        '''
+        Method that saves the instance of user model
+        '''
+        db.session.add(self)
+        db.session.commit()
 class Category(db.Model):
     '''
     Class that creates a pitch Category Object
@@ -81,7 +86,6 @@ class Category(db.Model):
         Args: 
             category_name: New category name
         '''
-        self.id = id
         self.category_name = category_name
 
     def save_category(self):
@@ -97,7 +101,6 @@ class Category(db.Model):
         '''
         categories = Category.query.all()
         return categories
-
 
 class Post(db.Model):
     '''
@@ -122,12 +125,12 @@ class Post(db.Model):
         self.user_id = user_id
         self.category_id = category_id
     
-    # def save_post(self):
-    #     '''
-    #     Method that saves the instance of post model
-    #     '''
-    #     db.session.add(self)
-    #     db.session.commit()
+    def save_post(self):
+        '''
+        Method that saves the instance of post model
+        '''
+        db.session.add(self)
+        db.session.commit()
     
     # def get_posts():
     #     '''
@@ -141,7 +144,7 @@ class PostDetails:
     '''
     Post details class to define post details objects
     '''
-    def __init__(self, post_id,post_date ,post_detail,category,posted_by,profile_pic_path,num_posts,upvote, downvote):
+    def __init__(self, post_id,post_date,post_detail,category,posted_by,profile_pic_path,num_posts,upvote, downvote):
         self.post_id = post_id
         self.post_date = post_date
         self.post_detail = post_detail
@@ -170,7 +173,6 @@ class Comment(db.Model):
             post_id: New comment post id
             user_id: New comment user id
             comments: New comment comments
-            created_at: New comment date time
         '''
         self.post_id = post_id
         self.user_id = user_id

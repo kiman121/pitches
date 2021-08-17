@@ -14,7 +14,7 @@ class PostForm(FlaskForm):
         return Category.query
 
     category = QuerySelectField(query_factory = category_query, allow_blank=True,blank_text="Select category", get_label='category_name',validators=[Required()])
-    post = StringField('Your post...', validators=[Required()])
+    post = TextAreaField('Your post...', validators=[Required()])
     submit = SubmitField('Post')
 
 class AddComment(FlaskForm):
