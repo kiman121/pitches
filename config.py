@@ -1,10 +1,11 @@
 import os
-
+import secrets
 class Config:
     '''
     General configuaration parent class
     '''
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    # SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = secrets.token_hex(16)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 

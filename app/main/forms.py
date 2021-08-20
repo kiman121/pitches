@@ -14,7 +14,7 @@ class PostForm(FlaskForm):
         return Category.query
 
     category = QuerySelectField(query_factory = category_query, allow_blank=True,blank_text="Select category", get_label='category_name',validators=[Required()])
-    post = TextAreaField('Your post...', validators=[Required()])
+    post = TextAreaField('Your post...',  validators=[Required()])
     submit = SubmitField('Post')
 
 class AddComment(FlaskForm):
@@ -23,3 +23,12 @@ class AddComment(FlaskForm):
     '''
     comment = StringField('Add comment', validators=[Required()])
     submit = SubmitField('Add')
+
+class UpdateProfile(FlaskForm):
+    '''
+    Class to create an update profile form
+    '''
+    first_name = StringField("First name", validators=[Required()])
+    other_names = StringField("Other names", validators=[Required()])
+    # bio = TextAreaField('Tell us about you.',validators=[Required()])
+    submit = SubmitField('Submit')

@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block
+content %}
+<div class="page-wrapper">
+  {% include 'navbar.html'%}
+
+  <div class="profile-wrapper">
+
+    <div class="row">
+      <div class="col-md-2 user-details">
+        <img
+          src="{{url_for('static', filename=user.profile_pic_path)}}"
+          alt="user image"
+        />
+        <h6>{{user.first_name}} {{user.other_names}}</h6>
+        <p>{{user.username}}</p>
+        <p>{{user.email}}</p>
+        <div class="pro-edit">
+          <a
+            data-target="#update_user_profile"
+            data-toggle="modal"
+            class="edit-icon open-edit-profile"
+            href="#"
+            ><i class="fa fa-pencil"></i
+          ></a>
+        </div>
+      </div>
+      <div class="col-md-10">
+        {% for post in posts %}
+        <div class="post-wrapper">
+          <div class="row post-header">
+            <div class="col-md-2 post-user-img">
+              <img
+                src="{{url_for('static', filename=post.profile_pic_path)}}"
+                alt="user profile pic"
+              />
+            </div>
+            <div class="col-md-10 post-content">
+              <h4>{{post.category}}</h4>
+              <p>
+                <span class="post-user-name">{{post.posted_by}}</span> |
+                <span>{{post.post_date}}</span>
+              </p>
+            </div>
+          </div>
+          <div class="post-body">
+            <p>{{post.post_detail}}</p>
+          </div>
+          <div class="post-statistics">
+            <div class="row">
+              <div class="col-md-6 up-down-vote">
+                <ul>
+                  <li class="upvote" href="#">
+                    <i class="fa fa-thumbs-up"></i>
+                    {%if post.upvote != None%} {{post.upvote}} {%endif%}
+                  </li>
+                  <li class="downvote" href="#">
+                    <i class="fa fa-thumbs-down"></i>
+                    {%if post.downvote != None%} {{post.downvote}} {%endif%}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6 comments-tally">
+                <p>{{post.num_posts}} comments</p>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <a href="">View post</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="update_user_profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit user profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url_for('main.update_profile', userid=current_user.id)}}" method="post" enctype="multipart/form-data">
+          <input type="file" name="photo" class="form-control" required>
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

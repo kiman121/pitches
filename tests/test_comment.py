@@ -2,12 +2,12 @@ import unittest
 from app.models import User, Category, Post, Comment
 from app import db
 
+
 class CommentModelTest(unittest.TestCase):
     '''
     Class to test the behaviours of the Comment class
     '''
-    count = 1
-    
+
     def setUp(self):
         '''
         Set up method that will run before every test
@@ -15,10 +15,10 @@ class CommentModelTest(unittest.TestCase):
         self.user_user = User(first_name='John', other_names='Pemba Mwadime',
                               username='pmwadime', email='pemba@ms.com')
         self.new_category = Category(category_name='Fashion')
-        self.new_post = Post(post='Unittesting headaches', user_id=1, category_id=1)
+        self.new_post = Post(post='Unittesting headaches',
+                             user_id=1, category_id=1)
         self.new_comment = Comment(
-            post_id=1, user_id= 1, comments='What an amaizing picth!')
-
+            post_id=1, user_id=1, comments='What an amaizing picth!')
 
     def tearDown(self):
         '''
@@ -66,7 +66,7 @@ class CommentModelTest(unittest.TestCase):
         self.new_comment.user_id = user_id
 
         self.new_comment.save_comment()
-        self.assertTrue(len(Comment.query.all())>0)
+        self.assertTrue(len(Comment.query.all()) > 0)
 
     def test_get_comments(self):
         '''
@@ -93,4 +93,4 @@ class CommentModelTest(unittest.TestCase):
         self.new_comment.save_comment()
 
         got_comments = Comment.query.all()
-        self.assertTrue(len(got_comments)>0)
+        self.assertTrue(len(got_comments) > 0)
