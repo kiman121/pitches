@@ -4,6 +4,7 @@ from . import auth
 from ..models import User
 from .forms import LoginForm, RegistrationForm
 from .. import db
+from ..email import mail_message
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -11,9 +12,10 @@ def login():
     Function that handles a login request
     '''
     login_form = LoginForm()
+
     if login_form.validate_on_submit():
         user = User.query.filter_by(email=login_form.email.data).first()
-         
+        
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user, login_form.remember.data)
             return redirect(request.args.get('next') or url_for('main.home', cid=0))
@@ -35,7 +37,8 @@ def register():
                     username=form.username.data, password=form.password.data, profile_pic_path="photos/default_user_pic.png")
         db.session.add(user)
         db.session.commit()
-
+        mail_message("Welcome to Pitches",
+                     "email/welcome_user", user.email, user=user)
         return redirect(url_for('auth.login'))
         title = "Pitches - new account"
         

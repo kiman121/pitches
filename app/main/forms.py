@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, validators
 from wtforms.validators import Required, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
 from ..models import Category
@@ -13,8 +13,9 @@ class PostForm(FlaskForm):
     def category_query():
         return Category.query
 
-    category = QuerySelectField(query_factory = category_query, allow_blank=True,blank_text="Select category", get_label='category_name',validators=[Required()])
+    category = QuerySelectField(query_factory = category_query,blank_text="Select category", get_label='category_name',validators=[validators.DataRequired()])
     post = TextAreaField('Your post...',  validators=[Required()])
+    endpoint = StringField('Endpoint', validators=[Required()])
     submit = SubmitField('Post')
 
 class AddComment(FlaskForm):

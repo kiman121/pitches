@@ -233,8 +233,7 @@ body {
  
  .profile-wrapper {
   margin: 0 auto;
-  /* max-width: 80%; */
-  padding: 5em 1.75em 0 1.75em;
+  padding: 3em 1.75em 0 1.75em;
  }
  .profile-wrapper .user-details img{
    width: 100%;
@@ -256,6 +255,7 @@ body {
    border: 2px solid;
     border-radius: 15px;
     padding: 1em;
+    margin-top: 2em;
  }
  .user-details .pro-edit{
   position: absolute;
@@ -268,8 +268,9 @@ body {
   /* margin: 0; */
   padding: 0.75em 0 0 0;
  }
- .profile-wrapper .post-wrapper{
-   margin: 0;
+ .profile-wrapper .posts{
+   height: 800px;
+   overflow: scroll;
  }
 /*-----------------
  Error page

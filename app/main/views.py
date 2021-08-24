@@ -14,16 +14,7 @@ def index():
     '''
     View function that returns the index page
     '''
-    # posts = get_posts()
-    # comments = get_comments()
     title = "Pitches - home"
-
-    # login_form = LoginForm()
-    # registration_form = RegistrationForm()
-    # post_form = PostForm()
-    # comment_form = AddComment()
-
-    # return render_template('index.html', title=title, post_form=post_form, posts=posts, comment_form=comment_form, comments=comments)
     return render_template('index.html', title=title)
 
 
@@ -33,10 +24,9 @@ def home(cid):
     '''
     View function that returns the home page
     '''
-    categories = Category.get_categories()
 
+    categories = Category.get_categories()
     posts = get_posts(cid)
-    # comments = get_comments()
 
     if cid == 0:
         category_name = "All Categories"
@@ -44,15 +34,11 @@ def home(cid):
         selected_category = Category.get_category_by_id(cid)
         category_name = selected_category.category_name
 
-    # login_form = LoginForm()
-    # registration_form = RegistrationForm()
     post_form = PostForm()
-    # comment_form = AddComment()
 
     title = 'Pitches - home'
 
-    return render_template('home.html', title=title, posts=posts, categories=categories, category_name=category_name)
-    # return render_template('home.html', title=title)
+    return render_template('home.html', post_form=post_form, title=title, posts=posts, categories=categories, category_name=category_name, )
 
 
 @main.route('/post/new', methods=['GET', 'POST'])
@@ -62,15 +48,24 @@ def new_post():
     View function that handles a post request
     '''
     form = PostForm()
+    request_endpoint = form.endpoint.data
+
+    if request_endpoint == 'main.profile':
+        redirect_to = url_for('.profile', userid=current_user.id)
+    elif request_endpoint == 'main.home':
+        redirect_to = url_for('.home', cid=0)
 
     if form.validate_on_submit():
+
+        print(request_endpoint)
+
         new_post = Post(post=form.post.data, user_id=current_user.get_id(
         ), category_id=form.category.data.id)
 
         db.session.add(new_post)
         db.session.commit()
 
-    return redirect(url_for('.index'))
+    return redirect(redirect_to)
 
 
 @main.route('/post/comment/<int:pid>/<int:uid>', methods=['POST'])
@@ -96,8 +91,6 @@ def add_comment_vote(pid, votetype):
 
     post = Post.query.filter_by(id=pid).first()
 
-    # initial_tally = None
-
     if votetype == 'upvote':
 
         if post.upvote == None:
@@ -121,11 +114,14 @@ def profile(userid):
     '''
     View function that displays a user profile
     '''
+    post_form = PostForm()
+
+    categories = Category.get_categories()
     user = User.query.filter_by(id=userid).first()
     posts = get_posts_by_user_id(userid)
     title = "Pitches - profile"
 
-    return render_template('user-profile.html', user=user, title=title, posts=posts)
+    return render_template('user-profile.html', post_form=post_form, categories=categories, user=user, title=title, posts=posts)
 
 
 @main.route('/user/profile/update/<int:userid>', methods=['GET', 'POST'])
@@ -148,22 +144,19 @@ def update_profile(userid):
 
     return redirect(url_for('.profile', userid=userid))
 
-@main.route('/post/<int:pid>', methods=['GET','POST'])
+
+@main.route('/post/<int:pid>', methods=['GET', 'POST'])
 @login_required
 def post(pid):
     '''
     View function that displays a selected post
     '''
+    categories = Category.get_categories()
     comments = get_comments()
     post = get_posts_by_post_id(pid)
     title = "Pitches - post"
 
-    login_form = LoginForm()
-    registration_form = RegistrationForm()
     post_form = PostForm()
     comment_form = AddComment()
 
-    return render_template('post.html', title=title, post_form=post_form, post=post, comment_form=comment_form, comments=comments)
-
-
-
+    return render_template('post.html', title=title, categories=categories, post_form=post_form, post=post, comment_form=comment_form, comments=comments)

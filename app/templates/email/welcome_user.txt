@@ -1,0 +1,7 @@
+Hey {{user.username}},
+Welcome to Pitches
+
+We are excited to have you come onboard. At pitches you will get to view and make pithces that define one's life.
+
+Stay hopeful,
+Pitches team
