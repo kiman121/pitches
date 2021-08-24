@@ -1,5 +1,5 @@
 # PitchMaster Web Application
-#### A pitch app.
+#### A pitch application.
 
 #### By **Patrick Mwangangi**
 ## Description
